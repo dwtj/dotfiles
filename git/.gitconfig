@@ -4,5 +4,5 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/owl/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = vim
