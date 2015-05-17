@@ -1,0 +1,8 @@
+[user]
+	name = David Johnston
+	email = dwtj@iastate.edu
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/owl/.gitignore_global
+	editor = vim
