@@ -62,8 +62,8 @@ set background=dark
 colorscheme solarized
 
 " Copy/Paste Support.
-vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
-nmap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
+vmap <Leader>y y:call system("pbcopy", getreg("\""))<CR>
+nmap <Leader>p :call setreg("\"",system("pbpaste"))<CR>p
 
 " Automatically turn on syntax highlighting according to file type.
 syntax enable
