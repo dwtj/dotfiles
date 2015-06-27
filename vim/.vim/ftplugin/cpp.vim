@@ -5,4 +5,4 @@ set expandtab
 
 set colorcolumn=80
 
-let syntastic_c_checkers = ["clang_check"]
+let g:syntastic_cpp_gcc_args = ' -std=c++11 -stdlib=libc++'

@@ -63,6 +63,7 @@ colorscheme solarized
 
 " Copy/Paste Support.
 vmap <Leader>y y:call system("pbcopy", getreg("\""))<CR>
+vmap <Leader>d d:call system("pbcopy", getreg("\""))<CR>
 nmap <Leader>p :call setreg("\"",system("pbpaste"))<CR>p
 
 " Automatically turn on syntax highlighting according to file type.
@@ -112,6 +113,7 @@ autocmd! User GoyoLeave
 autocmd  User GoyoLeave nested source ~/.vimrc
 
 " Syntastic
+nnoremap <leader>s :SyntasticCheck<CR>
 nnoremap <leader><S-s> :SyntasticToggleMode<CR>
 let g:syntastic_mode_map = {
     \ "mode": "passive",
@@ -143,3 +145,5 @@ nnoremap <leader>lp<space> :Lprint<space>
 au BufRead,BufNewFile *.ccap set filetype=ccap
 au BufRead,BufNewFile *.ll set filetype=llvm
 au BufRead,BufNewFile *.td set filetype=tablegen
+
+highlight Comment cterm=italic
