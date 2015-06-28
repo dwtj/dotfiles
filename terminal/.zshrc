@@ -1,75 +1,84 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/owl/.zshrc'
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/owl/.oh-my-zsh
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="agnoster"
 
-#export PROMPT='%m:%~%# '
-autoload -U colors && colors
-export PROMPT="%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[green]%}%m %{$fg[blue]%}%~ %{$reset_color%}%% "
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-alias vi="vim"
-alias vimdiff="vim -d"
-alias goyo="vim -c Goyo"
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-alias ls="ls -G"
-alias rmpyc='rm -v `find . | grep "\.pyc\$"`'
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
 
-export EDITOR=vim
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
 
-# Add program invocation configurations:
-export PATH="$PATH:$HOME/.bin"
-export PATH="$PATH:/Applications/Racket/bin"
-export PATH="$PATH:$HOME/Software/node_modules/.bin"
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-# Path Additions for Development:
-export PYTHONPATH="$HOME/Development/Oppy/:$HOME/Software/pynacl/build/lib.macosx-10.10-intel-2.7"
-#export PATH="$PATH:$HOME/Development/ccap/bin"
-#export Libclang_LIBRARY="/usr/local/opt/llvm/lib/libclang.dylib"
-#export Libclang_INCLUDE_DIR="/usr/local/opt/llvm/lib/clang/3.5.0/include"
-#export LIBCLANG_ROOT="/usr/local/opt/llvm/"
-#export LDFLAGS="-L/usr/local/opt/llvm/lib/clang-c"
-#export CPPFLAGS="-I/usr/local/opt/llvm/include/clang-c"
-export PANINIJ_HOME="$HOME/Software/PaniniJ"
-export PATH="$PATH:$PANINIJ_HOME/bin"
-export JAVA_HOME=$(/usr/libexec/java_home)
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-alias pm-cymail="passman show email/cymail"
-alias netid="passman show email/cymail"
-alias panc-gen-src="mkdir -p generated-src && panc -d generated-src -XD-printflat"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-# In order to make rust tools work:
-#for rust_prog in cargo rust-lldb rustc rustdoc 
-#do
-#	alias $rust_prog="DYLD_LIBRARY_PATH='/usr/local/lib' $rust_prog"
-#done
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
 
-#alias rustup.sh="curl -sS https://static.rust-lang.org/rustup.sh | sudo bash"
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-alias erlvi='rlwrap erl -oldshell'
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
 
-alias git-log-graph="git log --graph --decorate --pretty=oneline --abbrev-commit"
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-export ICE_HOME="/Library/Developer/Ice-3.5.1"
-export PATH="$PATH:$ICE_HOME/bin"
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
+# User configuration
 
-export FINDBUGS_HOME="$HOME/Software/findbugs/findbugs-3.0.1"
-alias findbugs="$FINDBUGS_HOME/bin/findbugs"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/Users/owl/.bin:/Applications/Racket/bin:/Users/owl/Software/node_modules/.bin:/Users/owl/Software/PaniniJ/Home/bin:/Library/Developer/Ice-3.5.1/bin"
+# export MANPATH="/usr/local/man:$MANPATH"
 
+source $ZSH/oh-my-zsh.sh
 
-export OPENMW_HOME="$HOME/Projects/openmw/build/OpenMW.app/Contents/MacOS"
-alias openmw="$OPENMW_HOME/openmw"
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-export MORROWIND_HOME="$HOME/Software/steamapps/Morrowind"
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-alias vim="nvim"
-alias vi="nvim"
-alias view="nvim -R"
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
