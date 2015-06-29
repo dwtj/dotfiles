@@ -1,0 +1,57 @@
+workspaces:
+
+  # Misc development projects:
+  - name: twsm
+    root: ~/Projects/twsm
+  - name: object-graph-explorer
+    root: ~/Projects/Java/object-graph-explorer
+  - name: fir-box
+    root: ~/Projects/SysAdmin/fir-box
+
+  # @PaniniJ
+  - name: at-paninij
+    root: ~/Projects/Panini/at-paninij
+  - name: at-paninij-benchmarks
+    root: ~/Projects/Panini/at-paninij-benchmarks
+  - name: at-paninij-examples
+    root: ~/Projects/Panini/at-paninij-example
+
+  # Languages:
+  - name: cpp-the-core-language
+    root: ~/Projects/Learn/cpp-the-core-language
+  - name: Forest/C++
+    root: ~/Forest/Programming Languages/Languages/C++
+  - name: Forest/Rust
+    root: ~/Forest/Programming Languages/Languages/Rust
+
+  # Research projects
+  - name: Topics/ownership
+    root: ~/Research/SoftDesign/Topics/ownership
+  - name: hybrid-ownership-transfer
+    root: ~/Research/SoftDesign/Pubs/hybrid-ownership-transfer
+  - name: java-ownership-transfer
+    root: ~/Research/SoftDesign/RFCs/java-ownership-transfer
+
+  # Forest research topics:
+  - name: Forest/Program Analysis
+    root: ~/Forest/Programming Languages/Program Analysis
+  - name: Forest/Java/Program Analysis
+    root: ~/Forest/Programming Languages/Languages/Java/Program Analysis
+
+  # Java tooling experiments:
+  - name: javac-ast-experiments
+    root: ~/Projects/Java/javac-ast-experiments
+
+  # Java tools:
+  - name: ductilej
+    root: ~/Software/ductilej
+  - name: java-oo
+    root: ~/Software/java-oo
+  - name: lombok
+    root: ~/Software/lombok
+  - name: jmh
+    root: ~/Software/jmh
+  - name: openjdk/jdk
+    root: ~/Software/openjdk/jdk8u/jdk
+  - name: openjdk/langtools
+    root: ~/Software/openjdk/jdk8u/langtools
