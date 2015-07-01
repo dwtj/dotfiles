@@ -8,3 +8,5 @@ set textwidth=79
 
 set breakindent
 set linebreak
+
+filetype indent plugin off
