@@ -68,13 +68,6 @@ set clipboard+=unnamedplus
 syntax enable
 set filetype=on
 
-" Mouse scroll-wheel support via SIMBL and MouseTerm.
-if has("mouse")
-    set mouse=a
-    map <ScrollWheelUp> <C-Y>
-    map <ScrollWheelDown> <C-E>
-endif
-
 " More intuitive window splitting direction:
 set splitbelow
 set splitright
