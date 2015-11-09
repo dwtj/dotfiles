@@ -1,0 +1,16 @@
+#compdef passman
+# A simple `zsh` auto-completion script for `passman`.
+
+local -a _verbs
+_verbs=('show:TODO')
+# init,list,ls,tree,show,view,clip,create,new,edit,ed,generate,gen,remove,rm,move,mv,copy,cp,find
+
+if (( CURRENT == 2 )); then
+  _describe -t verbs "command verb" _verbs
+elif (( CURRENT == 3 )); then
+  case $words[2] in
+    show)
+        compadd $(cd ~/.passman.db && find *)
+    ;;
+  esac
+fi
