@@ -16,21 +16,18 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-"Plugin 'vim-scripts/rfc-syntax'
 Plugin 'junegunn/goyo.vim'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'dag/vim2hs'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-sensible'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'scrooloose/nerdtree'
-"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'christoomey/vim-tmux-navigator'
-"Plugin 'lyuts/vim-rtags'
-"Plugin 'gilligan/vim-lldb'
 Plugin 'wting/rust.vim'
 Plugin 'lervag/vim-latex'
 Plugin 'avakhov/vim-yaml'
+Plugin 'vim-scripts/rfc-syntax'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
