@@ -7,30 +7,30 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+call vundle#begin("~/.vim/bundle")
 
 " Keep Plugin commands between vundle#begin/end.
 
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'vim-pandoc/vim-pandoc-syntax'
-"Bundle 'vim-scripts/rfc-syntax'
-Bundle 'junegunn/goyo.vim'
-Bundle 'altercation/vim-colors-solarized'
-"Bundle 'dag/vim2hs'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-sensible'
-Bundle 'dhruvasagar/vim-table-mode'
-Bundle 'scrooloose/nerdtree'
-"Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'christoomey/vim-tmux-navigator'
-"Bundle 'lyuts/vim-rtags'
-"Bundle 'gilligan/vim-lldb'
-Bundle 'wting/rust.vim'
-Bundle 'lervag/vim-latex'
-Bundle 'avakhov/vim-yaml'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+"Plugin 'vim-scripts/rfc-syntax'
+Plugin 'junegunn/goyo.vim'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'dag/vim2hs'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-sensible'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'christoomey/vim-tmux-navigator'
+"Plugin 'lyuts/vim-rtags'
+"Plugin 'gilligan/vim-lldb'
+Plugin 'wting/rust.vim'
+Plugin 'lervag/vim-latex'
+Plugin 'avakhov/vim-yaml'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -137,4 +137,8 @@ au BufRead,BufNewFile *.ccap set filetype=ccap
 au BufRead,BufNewFile *.ll set filetype=llvm
 au BufRead,BufNewFile *.td set filetype=tablegen
 
-highlight Comment cterm=italic
+" Display comments with italic font.
+"highlight Comment cterm=italic
+
+set autoread
+
