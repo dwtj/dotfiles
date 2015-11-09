@@ -61,10 +61,8 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" Copy/Paste Support.
-vmap <Leader>y y:call system("pbcopy", getreg("\""))<CR>
-vmap <Leader>d d:call system("pbcopy", getreg("\""))<CR>
-nmap <Leader>p :call setreg("\"",system("pbpaste"))<CR>p
+" Clipboard configuration.
+set clipboard+=unnamedplus
 
 " Automatically turn on syntax highlighting according to file type.
 syntax enable
