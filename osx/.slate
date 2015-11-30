@@ -1,0 +1,41 @@
+# Config file for Slate, a Mac OS X window management application.
+# https://github.com/jigish/slate
+
+# Global Config:
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config modalEscapeKey [:ctrl      # `ctrl-[` acts like `esc` in many terminals.
+
+# Focus Bindings: `alt` & vi navigation keys
+bind l:alt    focus right
+bind h:alt    focus left
+bind k:alt    focus up
+bind j:alt    focus down
+bind b:alt,w  focus behind
+
+# Note that Slate does not currently support switching between Mac OS X spaces.
+# If it did, I would use shift-alt-<direction> to move between spaces. This
+# style of control over Spaces can be manually configured via System
+# Preferences.
+
+# Push Bindings: `alt-w` & vi nav keys
+bind h:alt,w  push left    bar-resize:screenSizeX/2
+bind l:alt,w  push right   bar-resize:screenSizeX/2
+bind k:alt,w  push top     bar-resize:screenSizeY/2
+bind j:alt,w  push bottom  bar-resize:screenSizeY/2
+
+# Corner Bindings: `ctrl-alt-w` & vi nav keys
+bind h:ctrl,alt,w  corner top-left      resize:screenSizeX/2;screenSizeY/2
+bind k:ctrl,alt,w  corner top-right     resize:screenSizeX/2;screenSizeY/2
+bind j:ctrl,alt,w  corner bottom-left   resize:screenSizeX/2;screenSizeY/2
+bind l:ctrl,alt,w  corner bottom-right  resize:screenSizeX/2;screenSizeY/2
+
+# Throw Bindings: `alt-w` & number keys
+bind 0:alt,w  throw 0
+bind 1:alt,w  throw 1
+
+# Misc window commands: `alt-w` and a pneumonic.
+bind c:alt,w  push top center             # center window
+bind n:alt,w  hint                        # name windows
+bind g:alt,w  grid padding:5 0:6,3 0:6,3  # grid
