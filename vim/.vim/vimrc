@@ -58,8 +58,8 @@ syntax enable
 set background=dark
 colorscheme solarized
 
-" Clipboard configuration.
-set clipboard+=unnamedplus
+" Neovim-style clipboard configuration.
+"set clipboard+=unnamedplus
 
 " Automatically turn on syntax highlighting according to file type.
 syntax enable
@@ -135,7 +135,17 @@ au BufRead,BufNewFile *.ll set filetype=llvm
 au BufRead,BufNewFile *.td set filetype=tablegen
 
 " Display comments with italic font.
-"highlight Comment cterm=italic
+highlight Comment cterm=italic
 
+" Auto re-read file whenever another process changes it.
 set autoread
 
+" Enable mouse support.
+if has("mouse")		
+    set mouse=a		
+    map <ScrollWheelUp> <C-Y>		
+    map <ScrollWheelDown> <C-E>		
+endif
+
+" Move all vim dot files into `.vim/`:
+set viminfo+=n~/.vim/viminfo
