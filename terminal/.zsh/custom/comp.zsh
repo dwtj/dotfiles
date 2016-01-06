@@ -1,0 +1,1 @@
+fpath=(~/.zsh/comp $fpath)
