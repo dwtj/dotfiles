@@ -6,7 +6,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/goyo.vim'
+"Plug 'reedes/vim-pencil'
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-sensible'
@@ -72,9 +73,9 @@ nnoremap tm :tabm<space>
 nnoremap ts :tab split<CR>
 
 " Goyo
-nnoremap <leader>g :Goyo<CR>
-autocmd! User GoyoLeave
-autocmd  User GoyoLeave nested source ~/.vimrc
+"nnoremap <leader>g :Goyo<CR>
+"autocmd! User GoyoLeave
+"autocmd  User GoyoLeave nested source ~/.vimrc
 
 " Syntastic
 nnoremap <leader>s :SyntasticCheck<CR>
@@ -93,22 +94,30 @@ nmap <silent> <leader>n :NERDTreeToggle<CR>
 nmap <silent> <leader><S-n> :NERDTreeTabsToggle<CR>
 
 " vim-lldb Leader-Based Keymappings:
-nnoremap <leader>l<space> :Lcommand<space>
-nnoremap <leader>lw :Lhide<space>
-nnoremap <leader>lW :Lshow<space>
-nnoremap <leader>lc :Lcontinue<CR>
-nnoremap <leader>ls :Lstep<CR>
-nnoremap <leader>ln :Lnext<CR>
-nnoremap <leader>lf :Lfinish<CR>
-nnoremap <leader>lb :Lbreakpoint<CR>
-nnoremap <leader>lb<space> :Lbreakpoint<space>
-nnoremap <leader>lp :Lprint<CR>
-nnoremap <leader>lp<space> :Lprint<space>
+"nnoremap <leader>l<space> :Lcommand<space>
+"nnoremap <leader>lw :Lhide<space>
+"nnoremap <leader>lW :Lshow<space>
+"nnoremap <leader>lc :Lcontinue<CR>
+"nnoremap <leader>ls :Lstep<CR>
+"nnoremap <leader>ln :Lnext<CR>
+"nnoremap <leader>lf :Lfinish<CR>
+"nnoremap <leader>lb :Lbreakpoint<CR>
+"nnoremap <leader>lb<space> :Lbreakpoint<space>
+"nnoremap <leader>lp :Lprint<CR>
+"nnoremap <leader>lp<space> :Lprint<space>
 
 " Add some additional known file extensions.
 au BufRead,BufNewFile *.ccap set filetype=ccap
 au BufRead,BufNewFile *.ll set filetype=llvm
 au BufRead,BufNewFile *.td set filetype=tablegen
+
+" Add automatic use of vim-pencil
+"augroup pencil
+"  autocmd!
+"  autocmd FileType markdown,mkd call pencil#init()
+"  autocmd FileType pandoc       call pencil#init()
+"  autocmd FileType text         call pencil#init()
+"augroup END
 
 " Display comments with italic font.
 highlight Comment cterm=italic
