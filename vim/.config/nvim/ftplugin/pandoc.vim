@@ -18,5 +18,3 @@ noremap <buffer> <silent> 0 g0
 noremap <buffer> <silent> $ g$
 
 set display=lastline
-
-Goyo 80
