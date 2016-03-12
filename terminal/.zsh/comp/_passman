@@ -1,15 +1,24 @@
 #compdef passman
 # A simple `zsh` auto-completion script for `passman`.
 
+# TODO: Implement the complete list of verbs: init, list, ls, tree, show, view,
+# clip, create, new, edit, ed, generate, gen, remove, rm, move, mv, copy, cp,
+# find
+
 local -a _verbs
-_verbs=('show:TODO')
-# init,list,ls,tree,show,view,clip,create,new,edit,ed,generate,gen,remove,rm,move,mv,copy,cp,find
+_verbs=(
+  'show:Print the decrypted contents of the given DB entry to STDOUT.'
+  'clip:Decrypt the given DB entry, and copy its first line to the clipboard.'
+)
 
 if (( CURRENT == 2 )); then
   _describe -t verbs "command verb" _verbs
 elif (( CURRENT == 3 )); then
   case $words[2] in
     show)
+        compadd $(cd ~/.passman.db && find *)
+    ;;
+    clip)
         compadd $(cd ~/.passman.db && find *)
     ;;
   esac
