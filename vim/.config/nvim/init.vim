@@ -15,7 +15,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'scrooloose/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'wting/rust.vim'
-Plug 'lervag/vim-latex'
+Plug 'lervag/vimtex'
 Plug 'avakhov/vim-yaml'
 
 " Add plugins to &runtimepath
@@ -124,10 +124,3 @@ highlight Comment cterm=italic
 
 " Auto re-read file whenever another process changes it.
 set autoread
-
-" Enable mouse support.
-if has("mouse")		
-    set mouse=a		
-    map <ScrollWheelUp> <C-Y>		
-    map <ScrollWheelDown> <C-E>		
-endif
