@@ -1,10 +1,21 @@
+# OS X Files
 .DS_Store
 ._.DS_Store
 .fseventsd/
-*.swp
-*.swo
+
+# Private Dev Journal Files
 commit.md
 issues.md
 journal.md
+
+# Code Analysis Artifacts
 cscope.*
+
+# Workspace, IDE, and Editor Files
 .twsm.yml
+.idea
+*.iml
+.project
+.classpath
+*.swp
+*.swo
