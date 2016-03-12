@@ -2,7 +2,8 @@
 bindkey -v
 export EDITOR=vim
 
-export PATH="$PATH:$HOME/.bin"
+export DOTFILES="$HOME/.dotfiles"
+export PATH="$PATH:$DOTFILES/bin"
 
 
 # Move History file into `.zsh/`

@@ -1,0 +1,284 @@
+#!/usr/bin/env python3
+
+from os import system, getenv
+import argparse
+
+
+# Constants and Helper Functions ##############################################
+
+DEFAULT_PASSMAN_DB = '{}/.passman.db'.format(getenv("HOME"))
+
+
+def verbose_print(mesg):
+    # TODO
+    print("`verbose_print()` not implemented")
+    print(mesg)
+
+
+def is_database_git_repo():
+    # TODO
+    print("`is_database_git_repo()` not implemented")
+
+
+def prepend_database_to_filenames(opts):
+    # Prepend the database to those attributes that should point to files.
+    # This should make them proper filesystem paths.
+    for attr in ['entry', 'src', 'dest', 'subdir']:
+        if hasattr(opts, attr):
+            prepended = '{}/{}'.format(opts.database, getattr(opts, attr))
+            setattr(opts, attr, prepended)
+    if hasattr(opts, 'entries'):
+        opts.entries = ['"{}/{}"'.format(opts.database, e) for e in opts.entries]
+
+
+def load_database_conf(opts):
+    """Supplements the configuration options from the database to the program's
+    invocation options."""
+    if opts.gpg_id is None:
+        conf = open('{}/.conf'.format(opts.database), 'r')
+        opts.gpg_id = conf.readline()
+
+
+def decryption_cmd_str(entry):
+    return 'gpg2 --decrypt --batch --quiet {}'.format(entry)
+
+
+def encryption_cmd_str(entry, gpg_id):
+    return ('gpg2 --encrypt --quiet --recipient "{}" --output "{}"'
+                                             .format(gpg_id, entry))
+
+
+def clipboard_cmd_str():
+    """ Returns a CLI command string which will extract the first line from
+    STDIN, trim any newline character, and send what remains to the clipboard.
+    """
+    return "head -n 1 | tr -d '\n' | pbcopy"
+
+
+# Subcommand Handlers #########################################################
+
+def init_handler(opts):
+    print('Initializing a passman database at `{}`...'.format(opts.database))
+    print('Using "{}" a GPG_ID for this database.'.format(opts.gpg_id))
+
+    # TODO: if that directory already exists, error out.
+    system('mkdir -p {}'.format(opts.database))
+    conf = open('{}/.conf'.format(opts.database), 'w+')
+    conf.write(opts.gpg_id)
+    conf.close()
+
+
+def list_handler(opts):
+    system('ls -G {}'.format(opts.subdir))
+
+
+def tree_handler(opts):
+    system('tree -C {} | less -r'.format(opts.subdir))
+
+
+def show_handler(opts):
+    cmd = decryption_cmd_str(opts.entry)
+    system(cmd)
+
+
+def clip_handler(opts):
+    cmd = decryption_cmd_str(opts.entry) + ' | ' + clipboard_cmd_str()
+    system(cmd)
+
+
+def create_handler(opts):
+    # TODO: prevent clobbering
+    system('mkdir -p `dirname "{}"`'.format(opts.entry))
+    system(encryption_cmd_str(opts.entry, opts.gpg_id))
+
+
+def edit_handler(opts):
+    # TODO: make it so that it is a secure temporary copy of the entry which is
+    # being edited.
+    #system("vi {}".format(opts.entry))
+    print('`edit` not yet implemented')
+
+
+def generate_handler(opts):
+    # TODO: handle the case that the password should be sent to the clipboard.
+    pw_len = 24
+    num_pw = 1
+    cmd = "pwgen -s {} {}".format(pw_len, num_pw)
+    if opts.clipboard:
+        cmd += " | " + clipboard_cmd_str()
+    system(cmd)
+
+
+def remove_handler(opts):
+    switches = '-r' if opts.recursive else ''
+    entries = ' '.join(opts.entries)
+    system('rm {} {}'.format(switches, entries))
+
+
+def move_handler(opts):
+    system("mv {} {}".format(opts.src, opts.dest))
+
+
+def copy_handler(opts):
+    system("cp {} {}".format(opts.src, opts.dest))
+
+
+def find_handler(opts):
+    # TODO
+    return
+
+
+# CLI Stuff ###################################################################
+
+help_mesgs = {
+
+    # Global Options:
+
+    'database': ('Specifies the location of the passman database. '
+                 'All actions (e.g. list, show, move, etc.) are executed with '
+                 'respect to the database at this location. If this argument '
+                 'is not specified, the default database location is used, '
+                 'that is, `{}`.'.format(DEFAULT_PASSMAN_DB)),
+
+    'gpg_id':   ('Perform the action using the specified GnuPG ID string.'),
+
+
+    # Verbs:
+
+    'init':     ('Initializes a new passman database. Entries will be '
+                 'accessed using the given `gpg_id`.'),
+
+    'list':     ('Lists the contents of a directory within the database.'),
+
+    'tree':     ('Uses the `tree(1)` and `less(1)` commands to recursively '
+                 'display the entire contents of the database under the given '
+                 'directory.'),
+
+    'show':     ('Shows the contents of a passman database entry by printing '
+                 'its entire contents to STDOUT.'),
+
+    'clip':     ('Copies the first-line of the decrypted `entry` to the '
+                 'clipboard.'),
+
+    'create':   ('An encrypted copy of the STDIN is placed at the indicated '
+                 'location within the passman_db.'),
+
+    'edit':     ('TODO'),
+
+    'generate': ('Generates a password using the `pwgen` utility and sends '
+                 'it to STDOUT.'),
+
+
+    'remove':   ('Removes the indicated entry from the passman database.'),
+
+    'move':     ('Moves a database entry from one location to another within '
+                 'the database.'),
+
+    'copy':     ('Copies a database entry at one location, and places that '
+                 'copy at another location within the database.'),
+
+    'find':     ('TODO')
+}
+
+
+def build_parser():
+
+    parser = argparse.ArgumentParser()
+
+    # Specify the subcomand-agnostic arguments:
+    parser.add_argument('-d', '--database', default=DEFAULT_PASSMAN_DB,
+                                            help=help_mesgs['database'])
+    parser.add_argument('-g', '--gpg_id', help=help_mesgs['gpg_id'])
+
+    # Create a subparser for each of the verbs. In each valid case, a
+    # `verb_handler` is specified
+    verbs = parser.add_subparsers()
+
+    # init
+    init_parser = verbs.add_parser('init', help=help_mesgs['init'])
+    init_parser.add_argument('-g', '--gpg_id', required=True,
+                                   help=help_mesgs['gpg_id'])
+    init_parser.set_defaults(verb_handler=init_handler)
+
+    # list
+    list_parser = verbs.add_parser('list', aliases=['ls'],
+                                   help=help_mesgs['list'])
+    list_parser.add_argument('subdir', nargs='?', default='')
+    list_parser.set_defaults(verb_handler=list_handler)
+
+    # tree
+    tree_parser = verbs.add_parser('tree', help=help_mesgs['tree'])
+    tree_parser.add_argument('subdir', nargs='?', default='')
+    tree_parser.set_defaults(verb_handler=tree_handler)
+
+    # show
+    show_parser = verbs.add_parser('show', aliases=['view'],
+                                   help=help_mesgs['show'])
+    show_parser.add_argument('entry')
+    show_parser.set_defaults(verb_handler=show_handler)
+
+    # clip
+    clip_parser = verbs.add_parser('clip', help=help_mesgs['clip'])
+    clip_parser.add_argument('entry')
+    clip_parser.set_defaults(verb_handler=clip_handler)
+
+    # create
+    create_parser = verbs.add_parser('create', aliases=['new'],
+                                     help=help_mesgs['create'])
+    create_parser.add_argument('entry')
+    create_parser.set_defaults(verb_handler=create_handler)
+
+    # edit
+    edit_parser = verbs.add_parser('edit', aliases=['ed'],
+                                   help=help_mesgs['edit'])
+    edit_parser.add_argument('entry')
+    edit_parser.set_defaults(verb_handler=init_handler)
+
+    # generate
+    generate_parser = verbs.add_parser('generate', aliases=['gen'],
+                                       help=help_mesgs['generate'])
+    generate_parser.add_argument('-c', '--clipboard', action='store_true')
+    generate_parser.set_defaults(verb_handler=generate_handler)
+
+    # remove
+    remove_parser = verbs.add_parser('remove', aliases=['rm'],
+                                     help=help_mesgs['remove'])
+    remove_parser.add_argument('-r', '--recursive', action='store_true')
+    remove_parser.add_argument('entries', nargs='+')
+    remove_parser.set_defaults(verb_handler=remove_handler)
+
+    # move
+    move_parser = verbs.add_parser('move', aliases=['mv'],
+                                   help=help_mesgs['move'])
+    move_parser.add_argument('src')
+    move_parser.add_argument('dest')
+    move_parser.set_defaults(verb_handler=move_handler)
+
+    # copy
+    copy_parser = verbs.add_parser('copy', aliases=['cp'],
+                                   help=help_mesgs['copy'])
+    copy_parser.add_argument('src')
+    copy_parser.add_argument('dest')
+    copy_parser.set_defaults(verb_handler=copy_handler)
+
+    # find
+    find_parser = verbs.add_parser('find', help=help_mesgs['find'])
+    find_parser.add_argument('pattern')
+    find_parser.set_defaults(verb_handler=find_handler)
+
+    return parser
+
+
+# main() ######################################################################
+
+def main():
+
+    # Invoke the appropriate verb_handler with the parsed-arguments object.
+    parser = build_parser()
+    opts = parser.parse_args()
+    prepend_database_to_filenames(opts)
+    load_database_conf(opts)
+    opts.verb_handler(opts)
+
+
+main()
