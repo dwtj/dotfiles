@@ -143,8 +143,6 @@ set autoread
 " Enable mouse support.
 if has("mouse")		
     set mouse=a		
-    map <ScrollWheelUp> <C-Y>		
-    map <ScrollWheelDown> <C-E>		
 endif
 
 " Move all vim dot files into `.vim/`:
