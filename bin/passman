@@ -36,7 +36,7 @@ def load_database_conf(opts):
     invocation options."""
     if opts.gpg_id is None:
         conf = open('{}/.conf'.format(opts.database), 'r')
-        opts.gpg_id = conf.readline()
+        opts.gpg_id = conf.readline().strip()
 
 
 def decryption_cmd_str(entry):
