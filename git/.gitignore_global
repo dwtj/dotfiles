@@ -19,3 +19,6 @@ cscope.*
 .classpath
 *.swp
 *.swo
+
+# Bytecode/Object Files
+*.beam
