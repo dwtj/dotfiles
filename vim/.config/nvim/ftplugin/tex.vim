@@ -6,3 +6,4 @@ set expandtab
 set wrap
 set linebreak
 set nolist  " list disables linebreak
+set colorcolumn=80

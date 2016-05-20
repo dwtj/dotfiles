@@ -124,3 +124,6 @@ highlight Comment cterm=italic
 
 " Auto re-read file whenever another process changes it.
 set autoread
+
+" Eliminating delays on Esc
+set timeoutlen=1000 ttimeoutlen=10
