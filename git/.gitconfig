@@ -5,12 +5,4 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = vim
-
-[diff]
-	tool = vimdiff2
-	guitool = gvimdiff2
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+	editor = nvim
