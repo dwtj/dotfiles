@@ -1,8 +1,42 @@
 [user]
+	signingkey = 0xD08C8EC285329A3C
 	name = David Johnston
-	email = dwtj@iastate.edu
+	email = dwtj@dwtj.me
+	
+	#signingkey = 0xFDCF4254DB43372D
+	#name = David Johnston
+	#email = releases@dwtj.me
+	
+	#signingkey = 0xD377BD3B8A010884
+	#name = @PaniniJ Releases
+	#email = releases@paninij.org
+
 [push]
 	default = simple
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = /Users/dwtj/.gitignore_global
 	editor = nvim
+[commit]
+	gpgSign = true
+[alias]
+	workprofile = config user.email \"dwtj@iastate.edu\"
+	homeprofile = config user.email \"dwtj@dwtj.me\"
+	stat = status --short
+
+[diff]
+	tool = intellij
+[merge]
+	tool = intellij
+
+[difftool "intellij"]
+	cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
+[mergetool "intellij"]
+	cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+	trustExitCode = true
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
