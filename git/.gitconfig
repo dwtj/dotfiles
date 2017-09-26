@@ -22,21 +22,15 @@
 	workprofile = config user.email \"dwtj@iastate.edu\"
 	homeprofile = config user.email \"dwtj@dwtj.me\"
 	stat = status --short
+	hist = "log --all --decorate --oneline --graph"
 
 [diff]
-	tool = intellij
+	tool = vscode
 [merge]
-	tool = intellij
+	tool = opendiff
 
-[difftool "intellij"]
-	cmd = idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
-[mergetool "intellij"]
-	cmd = idea merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
-	trustExitCode = true
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
 
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+[gpg]
+	program = gpg2

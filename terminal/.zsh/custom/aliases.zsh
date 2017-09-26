@@ -11,3 +11,7 @@ alias vim=nvim
 alias view="nvim -R"
 
 alias lldb-server="/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/debugserver"
+
+alias erl="rlwrap erl -oldshell"
+
+alias gopath='export GOPATH="$PWD"'

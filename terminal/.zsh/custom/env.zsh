@@ -5,8 +5,14 @@ export EDITOR=nvim
 export DOTFILES="$HOME/.dotfiles"
 export JAVA_HOME="/Library/Java/Home"
 export PATH="$JAVA_HOME/bin:$PATH"   # Homebrew JDK should preceede system JDK.
-export PATH="$PATH:$DOTFILES/bin"
 export PATH="$PATH:$HOME/anaconda3/bin"
+export GOPATH="$HOME/Sources/go"
+export PATH="$GOBIN:$PATH"
+export PATH="$DOTFILES/bin:$PATH"
+export RUST_SRC_PATH="$HOME/.multirust/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src/"
+export JSR308="$HOME/Sources/jsr308-granullar"
+export PATH="$JSR308/jsr308-langtools/dist/bin:$PATH"
+export PATH="/usr/local/opt/protobuf@2.5/bin:$PATH"
 
 # Move History file into `.zsh/`
 HISTFILE="$ZDOTDIR/zsh_history"
@@ -18,13 +24,3 @@ if [ -f "${HOME}/.gpg-agent-info" ]; then
        export SSH_AUTH_SOCK
        export SSH_AGENT_PID
 fi
-
-# Making the LogicBlox database tools available on the command line:
-#export LOGICBLOX_HOME="${HOME}/Software/logicblox/home"
-#source "${LOGICBLOX_HOME}/etc/profile.d/logicblox.sh"
-
-# Configure golang development environment:
-#export GOPATH=$HOME/go
-
-# Add all Go executables to path:
-#export PATH="$GOPATH/bin:$PATH"
